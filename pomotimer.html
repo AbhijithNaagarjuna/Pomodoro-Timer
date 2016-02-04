@@ -1,0 +1,296 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+<script>
+var my;
+function decre()
+{
+
+    var textbox = document.getElementById("timer");
+    var time = textbox.value.split(":");
+    var minutes = parseInt(time[0]);
+    var seconds = time[1];
+    minutes--;
+    textbox.value = minutes + ':' + seconds;
+
+}
+
+function incre() {
+    var textbox = document.getElementById("timer");
+    var time = textbox.value.split(":");
+    var minutes = parseInt(time[0]);
+    var seconds = time[1];
+    minutes++;
+    textbox.value = minutes + ':' + seconds;
+}
+
+function countdown()
+{
+var textbox = document.getElementById("timer");
+this.start = textbox.value;
+this.target_id = "#timer";
+this.name = "timer";
+}
+countdown.prototype.init = function()
+{
+this.reset();
+my = setInterval(this.name + '.tick()',1000);
+}
+
+countdown.prototype.pause = function()
+{
+clearInterval(my);
+my = null;
+}
+
+countdown.prototype.reset = function()
+{
+time = this.start.split(":");
+this.minutes = parseInt(time[0]);
+this.seconds = parseInt(time[1]);
+this.update_target();
+}
+
+
+
+countdown.prototype.tick=function()
+{
+if(this.seconds > 0 || this.minutes > 0)
+  if(this.seconds == 0)
+  {
+  this.minutes=this.minutes-1;
+  this.seconds = 59;
+  }
+  else
+  {
+  this.seconds =  this.seconds-1;
+  }
+  this.update_target();
+}
+
+countdown.prototype.update_target=function()
+{
+seconds = this.seconds;
+if(seconds < 10)
+{
+seconds = "0" + seconds;
+}
+$(this.target_id).val(this.minutes + ":" +seconds);
+}
+
+
+
+
+
+
+
+
+
+var my;
+function decre2()
+{
+
+    var textbox = document.getElementById("timer2");
+    var time = textbox.value.split(":");
+    var minutes = parseInt(time[0]);
+    var seconds = time[1];
+    minutes--;
+    textbox.value = minutes + ':' + seconds;
+
+}
+
+function incre2() {
+    var textbox = document.getElementById("timer2");
+    var time = textbox.value.split(":");
+    var minutes = parseInt(time[0]);
+    var seconds = time[1];
+    minutes++;
+    textbox.value = minutes + ':' + seconds;
+}
+
+
+
+function countdown2()
+{
+var textbox = document.getElementById("timer2");
+this.start = textbox.value;
+this.target_id = "#timer2";
+this.name = "timer";
+}
+countdown2.prototype.ino = function()
+{
+this.reset2();
+my = setInterval(this.name + '.tick2()',1000);
+}
+
+countdown2.prototype.pause2 = function()
+{
+clearInterval(my);
+my = null;
+}
+
+countdown2.prototype.reset2 = function()
+{
+time = this.start.split(":");
+this.minutes = parseInt(time[0]);
+this.seconds = parseInt(time[1]);
+this.update_target2();
+}
+
+
+
+countdown2.prototype.tick2=function()
+{
+if(this.seconds > 0 || this.minutes > 0)
+  if(this.seconds == 0)
+  {
+  this.minutes=this.minutes-1;
+  this.seconds = 59;
+  }
+  else
+  {
+  this.seconds =  this.seconds-1;
+  }
+  this.update_target2();
+}
+
+countdown2.prototype.update_target2=function()
+{
+seconds = this.seconds;
+if(seconds < 10)
+{
+seconds = "0" + seconds;
+}
+$(this.target_id).val(this.minutes + ":" +seconds);
+}
+
+</script>
+</head>
+<body>
+
+<h1>
+Abhijith Naagarjuna's Timer
+</h1>
+<input id="decre1" type="button" name="-" value="-" onclick="decre()"/>
+<input name="timer" id="timer" value="30:00" type="text"/>
+<input id="incre1" type="button" name="+" value="+" onclick="incre()"/>
+<input type="button" id="start" value="Start" onclick="timer = new countdown(); timer.init();"/>
+<input type="button" id="pause" onclick="timer = new countdown(); timer.pause();" value="Pause"/>
+
+<input id="decre2" type="button" name="-" value="-" onclick="decre2()"/>
+<input name="timer" id="timer2" value="5:00" type="text"/>
+<input id="incre2" type="button" name="+" value="+" onclick="incre2()"/>
+<input type="button" id="start1" value="Start" onclick="timer = new countdown2(); timer.ino();"/>
+<input type="button" id="pause1" onclick="timer = new countdown2(); timer.pause2();" value="Pause"/>
+
+
+<style>
+body
+{
+background-color:#FF7373;
+}
+h1
+{
+color:white;
+text-align:center;
+font-family:'Bitter',serif;
+}
+#timer,#timer2
+{
+width:100px;
+height:100px;
+border-radius:150px;
+color:white;
+background-color:black;
+font-family:'Bitter',serif;
+text-align:center;
+font-size:30px;
+}
+#timer
+{
+position:absolute;
+left:250px;
+}
+#incre1
+{
+position:absolute;
+left:350px;
+top:100px;
+}
+#decre1
+{
+position:absolute;
+left:220px;
+top:100px;
+
+}
+#timer2
+{
+position:absolute;
+left:1000px;
+}
+#start
+{
+position:absolute;
+left:260px;
+top:180px;
+}
+
+#pause
+{
+position:absolute;
+left:260px;
+top:40px;
+}
+
+#decre2
+{
+position:absolute;
+left:970px;
+top:100px;
+}
+#incre2
+{
+position:absolute;
+left:1100px;
+top:100px;
+}
+
+#start1
+{
+position:absolute;
+top:180px;
+left:1010px;
+}
+
+#pause1
+{
+position:absolute;
+top:40px;
+left:1010px;
+}
+
+#start,#pause,#start1,#pause1
+{
+width:100px;
+background-color:white;
+border-radius:150px;
+}
+
+#incre1,#incre2,#decre1,#decre2
+{
+width:30px;
+height:30px;
+border-radius:150px;
+color:black;
+background-color:white;
+}
+</style>
+
+
+
+<script>
+</script>
+</body>
+</html>
